@@ -1,0 +1,278 @@
+#include "Security.h"
+Security::Security()
+{
+}
+
+Security::~Security()
+{
+}
+
+void Security::ROT13(static string varIn)
+{
+    length = varIn.length();
+
+    for (int x = 0; x < length; x++)
+    {
+        if (isalpha(varIn[x]))
+        {
+            letter = toupper(varIn[x]);
+            varOut += (((letter - 'A') + 13) % 26) + 'A';
+        }
+        else
+        {
+            varOut += varIn[x];
+        }
+    }
+
+    cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
+}
+
+void Security::VigenereEncrypt(static string varIn, static string key)
+{
+    length = varIn.length();
+    keyLength = key.length();
+	int y = 0;
+
+    for (int x = 0; x < length; x++)
+    {
+        if (y < keyLength)
+        {
+            if (isalpha(varIn[x]))
+            {
+                letter = toupper(varIn[x]);
+                keyLetter = toupper(key[y]);
+
+                letter = (((int)letter + (int)keyLetter) % 26) + 'A';
+
+                varOut += letter;
+                y++;
+            }
+            else
+            {
+                varOut += varIn[x];
+                y++;
+            }
+        }
+        else
+        {
+            y = 0;
+
+            if (isalpha(varIn[x]))
+            {
+                letter = toupper(varIn[x]);
+                keyLetter = toupper(key[y]);
+
+                letter = (((int)letter + (int)keyLetter) % 26) + 'A';
+                varOut += letter;
+                y++;
+            }
+            else
+            {
+                varOut += varIn[x];
+                y++;
+            }
+        }
+    }
+    cout << endl << "Input: " << varIn << endl << "Output: " << varOut;
+}
+
+void Security::VigenereDecrypt(static string varIn, static string key)
+{
+    length = varIn.length();
+    keyLength = key.length();
+	int y = 0;
+
+    for (int x = 0; x < length; x++)
+    {
+        if (y < keyLength)
+        {
+            if (isalpha(varIn[x]))
+            {
+                letter = toupper(varIn[x]);
+                keyLetter = toupper(key[y]);
+
+                letter = (((int)letter - (int)keyLetter + 26) % 26) + 'A';
+
+                varOut += letter;
+                y++;
+            }
+            else
+            {
+                varOut += varIn[x];
+                y++;
+            }
+        }
+        else
+        {
+            y = 0;
+
+            if (isalpha(varIn[x]))
+            {
+                letter = toupper(varIn[x]);
+                keyLetter = toupper(key[y]);
+
+                letter = (((int)letter + (int)keyLetter + 26) % 26) + 'A';
+                varOut += letter;
+                y++;
+            }
+            else
+            {
+                varOut += varIn[x];
+                y++;
+            }
+        }
+    }
+    cout << endl << "Input: " << varIn << endl << "Output: " << varOut;
+}
+
+void Security::Vernam(static string varIn, static string key)
+{
+    length = varIn.length();
+    keyLength = key.length();
+
+    if (length == keyLength)
+    {
+        for(int x = 0; x < length; x++)
+        {
+            if ( (isalpha(varIn[x])) && (isalpha(key[x])) )
+            {
+                letter = toupper(varIn[x]);
+                keyLetter = toupper(varIn[x]);
+
+                varOut += ((letter - 'A') ^ (keyLetter - 'A') % 26) + 'A';
+            }
+            else
+            {
+                varOut += varIn[x];
+            }
+        }
+    }
+    else
+    {
+        cerr << "Error: Plaintext and key must be of matching length." << endl;
+    }
+
+    cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
+}
+
+void Security::RailFenceEncrypt(static string varIn, static int numOfRails)
+{
+	int period = (2 * numOfRails) - 2;
+	int j;
+	string *lines = new string[numOfRails];
+	string *rails = new string[numOfRails];
+	string varOut;
+	int length = varIn.length();
+
+	for (int repeats = 0; repeats < ((length / period) + 1); repeats++)
+	{
+		if ((repeats * period) < length)
+		{
+			lines[0] += varIn[repeats * period];
+		}
+
+		for (j = 1; j < period / 2; j++)
+		{
+			if ((j + (repeats * period)) < length)
+			{
+				lines[j] += varIn[j + (repeats * period)];
+			}
+    
+			if ((((repeats + 1) * period) - j) < length)
+			{
+				lines[j] += varIn[((repeats + 1) * period) - j];
+			}
+		}
+
+		if (((period / 2) + (repeats * period)) < length)
+		{
+			lines[j] += varIn[(period / 2) + (repeats * period)];
+		}
+	}
+
+	for (int I = 0; I < numOfRails; I++)
+	{
+		varOut += lines[I];
+	}
+
+	cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
+}
+
+void Security::RailFenceDecrypt(static string varIn, static int numOfRails)
+{
+	int period = (2 * numOfRails) - 2;
+	int I, j;
+	string *lines = new string[numOfRails];
+	string *rails = new string[numOfRails];
+	string varOut;
+
+	length = varIn.length();
+	int mod = length % period;
+	int *railLength = new int[numOfRails];
+    
+	railLength[0] = length / period;
+	railLength[numOfRails - 1] = railLength[0];
+
+	for (I = 1; I < (numOfRails - 1); I++)
+	{
+		railLength[I] = railLength[0] * 2;    
+	}
+
+	for (I = 0; (I < mod) && (I < numOfRails); I++)
+	{
+		railLength[I]++;
+	}
+
+	for (j = (I - 2); (I < mod) && (j > -1); j--)
+	{
+		railLength[j]++;
+		I++;
+	}
+
+	int k = 0;
+
+	for (I = 0; I < numOfRails; I++)
+	{
+		for (j = 0; j < railLength[I]; j++)
+		{
+			rails[I] += varIn[k++];
+		}
+	}
+
+	for (I = 0; I < ((length / period) + 1); I++)
+	{
+		if (rails[0][I])
+		{
+			varOut += rails[0][I];
+		}
+        
+		for (j = 1; j < (numOfRails - 1); j++)
+		{
+			if (rails[j][I * 2])
+			{
+				varOut += rails[j][I * 2];
+			}
+		}
+
+		if (I < railLength[j])
+		{
+			if (rails[numOfRails - 1][I])
+			{
+				varOut += rails[numOfRails - 1][I];
+			}
+		}
+
+		for(j = (numOfRails - 2); j > 0; j--)
+		{
+			if (((I * 2) + 1) < railLength[j])
+			{
+				if (rails[j][((I * 2) + 1)])
+				{
+					varOut += rails[j][((I * 2) + 1)];
+				}
+			}
+		}
+	}
+
+	cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
+}
