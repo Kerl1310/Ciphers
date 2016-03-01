@@ -7,6 +7,7 @@ Security::~Security()
 {
 }
 
+// ROT13 cipher works by shifting the letters of the alphabet by 13 characters. Eg A becomes N
 void Security::ROT13(static string varIn)
 {
     length = varIn.length();
@@ -27,11 +28,13 @@ void Security::ROT13(static string varIn)
     cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
 }
 
+// Vigenere cipher works by taking a key and shifting the letters of the message
+// using the key to determine the amount of shifts to make.
 void Security::VigenereEncrypt(static string varIn, static string key)
 {
     length = varIn.length();
     keyLength = key.length();
-	int y = 0;
+    int y = 0;
 
     for (int x = 0; x < length; x++)
     {
@@ -80,7 +83,7 @@ void Security::VigenereDecrypt(static string varIn, static string key)
 {
     length = varIn.length();
     keyLength = key.length();
-	int y = 0;
+    int y = 0;
 
     for (int x = 0; x < length; x++)
     {
@@ -125,6 +128,7 @@ void Security::VigenereDecrypt(static string varIn, static string key)
     cout << endl << "Input: " << varIn << endl << "Output: " << varOut;
 }
 
+// Vernam cipher functions by taking a message and a key before performing an XOR function on the two.
 void Security::Vernam(static string varIn, static string key)
 {
     length = varIn.length();
@@ -155,6 +159,8 @@ void Security::Vernam(static string varIn, static string key)
     cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
 }
 
+// Rail Fence cipher functions by allocating the letters to a number of 'rails' before then encoding the message by
+// taking the rails in order. Eg testing becomes tsigetn if 2 rails are used.
 void Security::RailFenceEncrypt(static string varIn, static int numOfRails)
 {
 	int period = (2 * numOfRails) - 2;
