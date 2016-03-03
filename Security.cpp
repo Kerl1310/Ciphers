@@ -8,7 +8,7 @@ Security::~Security()
 }
 
 // ROT13 cipher works by shifting the letters of the alphabet by 13 characters. Eg A becomes N
-void Security::ROT13(static string varIn)
+void Security::ROT13(const string varIn)
 {
     length = varIn.length();
 
@@ -30,11 +30,11 @@ void Security::ROT13(static string varIn)
 
 // Vigenere cipher works by taking a key and shifting the letters of the message
 // using the key to determine the amount of shifts to make.
-void Security::VigenereEncrypt(static string varIn, static string key)
+void Security::VigenereEncrypt(const string varIn, const string key)
 {
     length = varIn.length();
     keyLength = key.length();
-    int y = 0;
+	int y = 0;
 
     for (int x = 0; x < length; x++)
     {
@@ -76,14 +76,14 @@ void Security::VigenereEncrypt(static string varIn, static string key)
             }
         }
     }
-    cout << endl << "Input: " << varIn << endl << "Output: " << varOut;
+    cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
 }
 
-void Security::VigenereDecrypt(static string varIn, static string key)
+void Security::VigenereDecrypt(const string varIn, const string key)
 {
     length = varIn.length();
     keyLength = key.length();
-    int y = 0;
+	int y = 0;
 
     for (int x = 0; x < length; x++)
     {
@@ -125,11 +125,11 @@ void Security::VigenereDecrypt(static string varIn, static string key)
             }
         }
     }
-    cout << endl << "Input: " << varIn << endl << "Output: " << varOut;
+    cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
 }
 
 // Vernam cipher functions by taking a message and a key before performing an XOR function on the two.
-void Security::Vernam(static string varIn, static string key)
+void Security::Vernam(const string varIn, const string key)
 {
     length = varIn.length();
     keyLength = key.length();
@@ -161,13 +161,12 @@ void Security::Vernam(static string varIn, static string key)
 
 // Rail Fence cipher functions by allocating the letters to a number of 'rails' before then encoding the message by
 // taking the rails in order. Eg testing becomes tsigetn if 2 rails are used.
-void Security::RailFenceEncrypt(static string varIn, static int numOfRails)
+void Security::RailFenceEncrypt(const string varIn, const int numOfRails)
 {
 	int period = (2 * numOfRails) - 2;
 	int j;
 	string *lines = new string[numOfRails];
 	string *rails = new string[numOfRails];
-	string varOut;
 	int length = varIn.length();
 
 	for (int repeats = 0; repeats < ((length / period) + 1); repeats++)
@@ -204,13 +203,12 @@ void Security::RailFenceEncrypt(static string varIn, static int numOfRails)
 	cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
 }
 
-void Security::RailFenceDecrypt(static string varIn, static int numOfRails)
+void Security::RailFenceDecrypt(const string varIn, const int numOfRails)
 {
 	int period = (2 * numOfRails) - 2;
 	int I, j;
 	string *lines = new string[numOfRails];
 	string *rails = new string[numOfRails];
-	string varOut;
 
 	length = varIn.length();
 	int mod = length % period;
