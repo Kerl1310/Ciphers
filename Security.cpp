@@ -8,7 +8,7 @@ Security::~Security()
 }
 
 // ROT13 cipher works by shifting the letters of the alphabet by 13 characters. Eg A becomes N
-void Security::ROT13(const string varIn)
+void Security::ROT13(const std::string varIn)
 {
     length = varIn.length();
 
@@ -30,7 +30,7 @@ void Security::ROT13(const string varIn)
 
 // Vigenere cipher works by taking a key and shifting the letters of the message
 // using the key to determine the amount of shifts to make.
-void Security::VigenereEncrypt(const string varIn, const string key)
+void Security::VigenereEncrypt(const std::string varIn, const std::string key)
 {
     length = varIn.length();
     keyLength = key.length();
@@ -79,7 +79,7 @@ void Security::VigenereEncrypt(const string varIn, const string key)
     std::cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
 }
 
-void Security::VigenereDecrypt(const string varIn, const string key)
+void Security::VigenereDecrypt(const std::string varIn, const std::string key)
 {
     length = varIn.length();
     keyLength = key.length();
@@ -129,7 +129,7 @@ void Security::VigenereDecrypt(const string varIn, const string key)
 }
 
 // Vernam cipher functions by taking a message and a key before performing an XOR function on the two.
-void Security::Vernam(const string varIn, const string key)
+void Security::Vernam(const std::string varIn, const std::string key)
 {
     length = varIn.length();
     keyLength = key.length();
@@ -161,12 +161,12 @@ void Security::Vernam(const string varIn, const string key)
 
 // Rail Fence cipher functions by allocating the letters to a number of 'rails' before then encoding the message by
 // taking the rails in order. Eg testing becomes tsigetn if 2 rails are used.
-void Security::RailFenceEncrypt(const string varIn, const int numOfRails)
+void Security::RailFenceEncrypt(const std::string varIn, const int numOfRails)
 {
 	int period = (2 * numOfRails) - 2;
 	int j;
-	string *lines = new string[numOfRails];
-	string *rails = new string[numOfRails];
+	std::string *lines = new std::string[numOfRails];
+	std::string *rails = new std::string[numOfRails];
 	int length = varIn.length();
 
 	for (int repeats = 0; repeats < ((length / period) + 1); repeats++)
@@ -203,12 +203,12 @@ void Security::RailFenceEncrypt(const string varIn, const int numOfRails)
 	std::cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
 }
 
-void Security::RailFenceDecrypt(const string varIn, const int numOfRails)
+void Security::RailFenceDecrypt(const std::string varIn, const int numOfRails)
 {
 	int period = (2 * numOfRails) - 2;
 	int I, j;
-	string *lines = new string[numOfRails];
-	string *rails = new string[numOfRails];
+	std::string *lines = new std::string[numOfRails];
+	std::string *rails = new std::string[numOfRails];
 
 	length = varIn.length();
 	int mod = length % period;
