@@ -1,17 +1,15 @@
 /*	Personal project creating software to encode/decode messages using various ciphers.
 	Currently four (4) ciphers have been implemented, with plans for several more in the
 	near future. */
-#include <string>
 #include "Security.h"    // Future Improvement: Use Qt toolkit for GUI
-using namespace std;
 
 int main()
 {
     int cipherSelection = 0;
 	int selection = 0;
 	int numOfRails = 0;
-    string varIn;
-	string key;
+    std::string varIn;
+	std::string key;
     Security Encryption;
 
 	// Possible Future Improvement: Move Menu to seperate class		
