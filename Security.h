@@ -1,14 +1,11 @@
 #ifndef SECURITY_H
 #define SECURITY_H
-#include <string>
-using namespace std;
-
 class Security
 {
     private:
-        string varIn;
-        string varOut;
-        string key;
+        std::string varIn;
+        std::string varOut;
+        std::string key;
         int length;
         int keyLength;
         char letter;
@@ -16,11 +13,11 @@ class Security
     public:
         Security();
         ~Security();
-        void ROT13(const string);
-        void VigenereEncrypt(const string, const string);
-        void VigenereDecrypt(const string, const string);
-	void Vernam(const string, const string);
-	void RailFenceEncrypt(const string, const int);
-	void RailFenceDecrypt(const string, const int);
+        void ROT13(const std::string);
+        void VigenereEncrypt(const std::string, const std::string);
+        void VigenereDecrypt(const std::string, const std::string);
+	void Vernam(const std::string, const std::string);
+	void RailFenceEncrypt(const std::string, const int);
+	void RailFenceDecrypt(const std::string, const int);
 };
 #endif
