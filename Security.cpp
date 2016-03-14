@@ -25,7 +25,7 @@ void Security::ROT13(const string varIn)
         }
     }
 
-    cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
+    std::cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
 }
 
 // Vigenere cipher works by taking a key and shifting the letters of the message
@@ -76,7 +76,7 @@ void Security::VigenereEncrypt(const string varIn, const string key)
             }
         }
     }
-    cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
+    std::cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
 }
 
 void Security::VigenereDecrypt(const string varIn, const string key)
@@ -125,7 +125,7 @@ void Security::VigenereDecrypt(const string varIn, const string key)
             }
         }
     }
-    cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
+    std::cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
 }
 
 // Vernam cipher functions by taking a message and a key before performing an XOR function on the two.
@@ -153,10 +153,10 @@ void Security::Vernam(const string varIn, const string key)
     }
     else
     {
-        cerr << "Error: Plaintext and key must be of matching length." << endl;
+        std::cerr << "Error: Plaintext and key must be of matching length." << endl;
     }
 
-    cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
+    std::cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
 }
 
 // Rail Fence cipher functions by allocating the letters to a number of 'rails' before then encoding the message by
@@ -200,7 +200,7 @@ void Security::RailFenceEncrypt(const string varIn, const int numOfRails)
 		varOut += lines[I];
 	}
 
-	cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
+	std::cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
 }
 
 void Security::RailFenceDecrypt(const string varIn, const int numOfRails)
@@ -278,5 +278,5 @@ void Security::RailFenceDecrypt(const string varIn, const int numOfRails)
 		}
 	}
 
-	cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
+	std::cout << endl << "Input: " << varIn << endl << "Output: " << varOut << endl;
 }
