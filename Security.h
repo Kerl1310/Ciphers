@@ -1,6 +1,5 @@
 #ifndef SECURITY_H
 #define SECURITY_H
-#include <iostream>
 #include <string>
 using namespace std;
 
@@ -17,11 +16,11 @@ class Security
     public:
         Security();
         ~Security();
-        void ROT13(static string);
-        void VigenereEncrypt(static string, static string);
-        void VigenereDecrypt(static string, static string);
-		void Vernam(static string, static string);
-		void RailFenceEncrypt(static string, static int);
-		void RailFenceDecrypt(static string, static int);
+        void ROT13(const string);
+        void VigenereEncrypt(const string, const string);
+        void VigenereDecrypt(const string, const string);
+	void Vernam(const string, const string);
+	void RailFenceEncrypt(const string, const int);
+	void RailFenceDecrypt(const string, const int);
 };
 #endif
