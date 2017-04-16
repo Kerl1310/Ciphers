@@ -191,7 +191,7 @@ void SHA256::final(unsigned char *digest)
 	|
 	|  Returns:	string
 	*-------------------------------------------------------------------*/
-std::string sha256(std::string varIn)
+std::string SHA256::sha256(std::string varIn)
 {
     unsigned char digest[SHA256::DIGEST_SIZE];
 	int i;

@@ -9,18 +9,26 @@
 
 #include <iostream>
 #include <string>
-#include "Security.h"
 #include "SHA256.h"
+#include "RailFence.h"
+#include "ROT13.h"
+#include "Vigenere.h"
+#include "Vernam.h"
 
 int main()
 {
+	Vernam ve;
+	Vigenere vi;
+	RailFence ra;
+	ROT13 ro;
+	SHA256 s;
+
     int cipherSelection = 0;
 	int selection = 0;
 	int numOfRails = 0;
     std::string varIn;
 	std::string output;
 	std::string key;
-    Security Encryption;
 
     std::cout << "Enter a piece of text to be encoded." << std::endl;
     std::cin >> varIn;
@@ -35,7 +43,16 @@ int main()
     switch(cipherSelection)
     {
         case 1:
-            Encryption.ROT13(varIn);
+			std::cout << std::endl << "Do you wish to..." << std::endl << "1. Encrypt" << std::endl << "2. Decrypt" << std::endl << std::endl;
+			std::cin >> selection;
+
+			if (selection == 1)
+				ro.Encrypt(varIn);
+			else if (selection == 2)
+				ro.Decrypt(varIn);
+			else
+				std::cerr << "Error: Invalid selection." << std::endl;
+
 			break;
         case 2:
         	// Vigenere requires a key to determine the shifts to be applied
@@ -46,9 +63,9 @@ int main()
 			std::cin >> selection;
 
 			if (selection == 1)
-				Encryption.VigenereEncrypt(varIn, key);
+				vi.Encrypt(varIn, key);
 			else if (selection == 2)
-				Encryption.VigenereDecrypt(varIn, key);
+				vi.Decrypt(varIn, key);
 			else
 				std::cerr << "Error: Invalid selection." << std::endl;
 
@@ -58,7 +75,16 @@ int main()
             std::cout << "Enter a key." << std::endl;
 			std::cin >> key;
 			
-			Encryption.Vernam(varIn, key);
+			std::cout << std::endl << "Do you wish to..." << std::endl << "1. Encrypt" << std::endl << "2. Decrypt" << std::endl << std::endl;
+			std::cin >> selection;
+
+			if (selection == 1)
+				ve.Encrypt(varIn, key);
+			else if (selection == 2)
+				ve.Decrypt(varIn, key);
+			else
+				std::cerr << "Error: Invalid selection." << std::endl;
+
 			break;
         case 4:
 			// Rail Fence requires a number of rails be set prior to the algorithm being applied
@@ -69,15 +95,15 @@ int main()
 			std::cin >> selection;
 			
 			if (selection == 1)
-				Encryption.RailFenceEncrypt(varIn, numOfRails);
+				ra.Encrypt(varIn, numOfRails);
 			else if (selection == 2)
-				Encryption.RailFenceDecrypt(varIn, numOfRails);
+				ra.Decrypt(varIn, numOfRails);
 			else
 				std::cerr << "Error: Invalid selection." << std::endl;
 			break;
 		case 5:
 			// Call SHA256
-			output = sha256(varIn);
+			output = s.sha256(varIn);
 			break;
         default:
             std::cerr << "Error: Invalid selection." << std::endl;

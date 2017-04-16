@@ -24,12 +24,36 @@
     <ClCompile Include="SHA256.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RailFence.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ROT13.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Vernam.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Vigenere.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Security.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SHA256.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vigenere.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ROT13.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vernam.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RailFence.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
