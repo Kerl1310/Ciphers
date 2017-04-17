@@ -80,7 +80,6 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="RailFence.cpp" />
     <ClCompile Include="ROT13.cpp" />
-    <ClCompile Include="Security.cpp" />
     <ClCompile Include="SHA256.cpp" />
     <ClCompile Include="Vernam.cpp" />
     <ClCompile Include="Vigenere.cpp" />
@@ -88,7 +87,7 @@
   <ItemGroup>
     <ClInclude Include="RailFence.h" />
     <ClInclude Include="ROT13.h" />
-    <ClInclude Include="Security.h" />
+    <ClInclude Include="Cipher.h" />
     <ClInclude Include="SHA256.h" />
     <ClInclude Include="Vernam.h" />
     <ClInclude Include="Vigenere.h" />
